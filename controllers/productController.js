@@ -15,7 +15,7 @@ export const addProduct = (req,res)=>{
         if(err) return res.json(err);
         if(data.length) return res.status(409).json("Sản phẩm đã tồn tại !!!");
 
-        const q = "INSERT INTO products(`id`, `title`, `description`, `price`, `img`, `cate_id`, `supplier_id`) VALUES (?)";
+        const q = "INSERT INTO products(`id`, `title`, `description`, `price`, `img`, `cate_id`, `sup_id`) VALUES (?)";
         const values=[
             req.body.id,
             req.body.title,
@@ -23,7 +23,7 @@ export const addProduct = (req,res)=>{
             req.body.price,
             req.body.img,
             req.body.cate_id,
-            req.body.supplier_id
+            req.body.sup_id
 
         ]
         db.query(q,[values],(err,data)=>{
