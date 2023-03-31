@@ -8,6 +8,16 @@ export const getProduct = (req,res)=>{
     })
 }
 
+  //getProduct
+ export const getProductId = (req, res) => {
+    const q ="SELECT * FROM products WHERE id=?"
+      db.query(q,(err,data)=>{
+        if(err) return res.json(err);
+        return res.json(data);
+      })
+      res.status(200).json(product);
+  }
+
 export const addProduct = (req,res)=>{
     const q = `SELECT * FROM products WHERE id = ?`
 

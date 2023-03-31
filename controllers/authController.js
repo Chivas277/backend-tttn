@@ -9,19 +9,19 @@ export const register = (req,res)=>{
         if(err) return res.json(err);
         if(data.length) return res.status(409).json("Email đã tồn tại !!!");
 
-        const salt = bcrypt.genSalt(10);
-        const hash = bcrypt.hashSync(req.body.password,salt);
+        //  const salt = bcrypt.genSalt(10);
+        //  const hash = bcrypt.hashSync(req.body.password,salt);
 
        
-        const q = "INSERT INTO users(`id`,`username`, `email` ,`password`,`sdt`,`role_id`) VALUES (?)"
+        const q = "INSERT INTO users(`id`,`username`, `email` ,`password`,`sdt`,`role`) VALUES (?)"
 
         const values = [
             req.body.id,
             req.body.username,
             req.body.email,
-            hash,
+            req.body.password,
             req.body.sdt,
-            req.body.role_id
+            req.body.role
         ]
         db.query(q,[values],(err,data)=>{
             if(err) return res.json(err);
