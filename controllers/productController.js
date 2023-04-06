@@ -42,3 +42,32 @@ export const addProduct = (req,res)=>{
         })
     })
 }
+
+export const updateProduct = (req,res)=>{
+    const productId = req.params.id;
+    const q = "UPDATE products SET `title`=?, `description`=?, `price`=?, `img`=?, quantity`=?, `cate_id`=?, `sup_id`=?, WHERE id=?";
+    
+    const values=[
+        req.body.title,
+        req.body.description,
+        req.body.price,
+        req.body.img,
+        req.body.cate_id,
+        req.body.sup_id
+    ];
+
+    db.query(q, [...values,productId],(err,data)=>{
+        if(err) return res.send(err);
+        return res.json(data);
+    })
+}
+
+export const delProduct = (req,res)=>{
+    const productId=req.params.id;
+    const q="DELETE FROM products WHERE id = ?";
+
+    db.query(q, [productId],(err,data)=>{
+        if(err) return res.send(err);
+        return res.json("Đã xóa sản phẩm");
+    })
+}
