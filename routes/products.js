@@ -4,7 +4,7 @@ import express from "express";
 const router = express.Router();
 
 router.get("/getproduct", getProduct);
-router.get("/getproductid",getProductId);
+router.get("/:id",getProductId);
 router.post("/addproduct", addProduct);
 
 export default router;
