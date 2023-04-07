@@ -18,6 +18,15 @@ export const getProduct = (req,res)=>{
       })
   }
 
+  export const getProductCate=(req,res)=>{
+    const q = "SELECT * FROM `products` WHERE `cate_id` = ?"
+    db.query(q,[req.params.id],(err,data)=>{
+        console.log(data);
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+  }
+
 export const addProduct = (req,res)=>{
     const q = `SELECT * FROM products WHERE id = ?`
 
@@ -57,6 +66,8 @@ export const updateProduct = (req,res)=>{
     ];
 
     db.query(q, [...values,productId],(err,data)=>{
+        console.log(err);
+        console.log(data);
         if(err) return res.send(err);
         return res.json(data);
     })
