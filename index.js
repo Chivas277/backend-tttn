@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js';
 import productsRoutes from './routes/products.js';
 import CateRoutes from './routes/cate.js';
 import SupplierRoutes from './routes/supplier.js';
+import CheckoutRoutes from './routes/stripe.js';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/products",productsRoutes);
 app.use("/api/categories",CateRoutes);
 app.use("/api/suppliers",SupplierRoutes);
+app.use("/api/checkout",CheckoutRoutes);
 
 
 // app.get("/books", (req, res) => {

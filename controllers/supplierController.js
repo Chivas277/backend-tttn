@@ -26,3 +26,13 @@ export const AddSupplier = (req,res)=>{
         })
     })
 }
+
+export const delSup = (req,res)=>{
+    const supId=req.params.id;
+    const q="DELETE FROM suppliers WHERE id = ?";
+
+    db.query(q, [supId],(err,data)=>{
+        if(err) return res.send(err);
+        return res.json("Đã xóa nhà sản xuất sản phẩm");
+    })
+}

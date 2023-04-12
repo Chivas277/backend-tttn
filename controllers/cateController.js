@@ -26,3 +26,13 @@ export const addCate = (req,res)=>{
         })
     })
 }
+
+export const delCate = (req,res)=>{
+    const cateId=req.params.id;
+    const q="DELETE FROM categories WHERE id = ?";
+
+    db.query(q, [cateId],(err,data)=>{
+        if(err) return res.send(err);
+        return res.json("Đã xóa danh mục sản phẩm");
+    })
+}
