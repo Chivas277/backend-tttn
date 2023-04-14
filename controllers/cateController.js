@@ -36,3 +36,20 @@ export const delCate = (req,res)=>{
         return res.json("Đã xóa danh mục sản phẩm");
     })
 }
+
+
+export const updateCate = (req,res)=>{
+    const cateId = req.params.id;
+    const q = "UPDATE categories SET `title`=? WHERE id=?";
+    
+    const values=[
+        req.body.title,
+    ];
+
+    db.query(q, [...values,cateId],(err,data)=>{
+        console.log(err);
+        console.log(data);
+        if(err) return res.send(err);
+        return res.json(data);
+    })
+}
